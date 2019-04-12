@@ -1,0 +1,30 @@
+{
+    "os": {
+        "Windows":{
+
+        },
+        "OS X":{
+
+        },
+        "Android":{
+
+        },
+        "iOS":{
+
+        },
+        "Linux":{
+
+        }
+    },
+    "platform":{
+
+    },
+    "github":"https://github.com/RingGameStudio/Elixir.git",
+    "wiki":"https://github.com/RingGameStudio/Elixir/wiki",
+    "official":"http://www.ringgamestudio.com",
+    "gameinfo":{
+        "sTitle":"Elixir",
+        "sEngineVersion":"11.1",
+        "sGameVersion":"0.0.1"
+    }
+}
