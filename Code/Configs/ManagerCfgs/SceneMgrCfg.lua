@@ -4,6 +4,7 @@ _G.SceneType =
     sSplashScene = "SplashScene";
     sWelcomScene = "WelcomScene";
     sGameScene = "GameScene";
+    sHelpWelcom = "HelpWelcom";
 }
 
 _G.SceneMgrCfg = 
@@ -14,6 +15,7 @@ _G.SceneMgrCfg =
         "SplashScene";
         "WelcomScene";
         "GameScene";
+        "HelpWelcom";
     }
 }
 

@@ -1,41 +1,44 @@
 _G.WelcomScene = Scene:DeriveClass("WelcomScene");
 
-function WelcomScene:Start()
-    self.nCricleR = 1;
-    self.bScalBig = true;
+function WelcomScene:StartHandler()
+
+    local iStage = self:CreateStage();
+    self:SetCurStage(iStage);
+
+    local startBtn = loveframes.Create("button");
+    startBtn:SetText("Start");
+    startBtn:SetPos(445,384);
+    startBtn:SetSize(70,40);
+    startBtn.OnClick = function ()
+        self:ClickStartHandler();
+    end
+    self:GetCurStage():AddUI("startBtn",startBtn);
+
+    local helpBtn = loveframes.Create("imagebutton");
+    helpBtn:SetImage(AssetsMgr:GetTexture("grass"));
+    helpBtn:SetText("");
+    helpBtn:SetPos(445,434);
+    helpBtn:SizeToImage();
+    helpBtn.OnClick = function ()
+        self:ClickHelpHandler();
+    end
+    self:GetCurStage():AddUI("helpBtn",helpBtn);
+
 end
 
-function WelcomScene:Update(dt)
-	if self.bScalBig then 
-		if self.nCricleR <= 0.1 then 
-			self.bScalBig = false;
-			return 
-		end 
-		self.nCricleR = self.nCricleR - 0.01;
-	else 
-		if self.nCricleR >= 1 then 
-			self.bScalBig = true;
-			return 
-		end 
-		self.nCricleR = self.nCricleR + 0.01;
-	end
-end
-
-function WelcomScene:Render()
+function WelcomScene:RenderHandler()
     love.graphics.setColor(1,1,1,1);
     love.graphics.setFont(AssetsMgr:GetFont(722));
     local nTitleX = (graphicsWidth*0.5) - AssetsMgr:GetFont(722):getWidth(Option.sTitle)*0.5;
     local nTitleY = graphicsHeight*0.35;
     love.graphics.print(Option.sTitle, nTitleX,nTitleY);
-    love.graphics.setColor(1,1,1,self.nCricleR);
-    love.graphics.setFont(AssetsMgr:GetFont(242));
-    local nStartBtnX = (graphicsWidth*0.5) - AssetsMgr:GetFont(242):getWidth("TAP TO RESTART GAME")*0.5;
-    local nStartBtnY = graphicsHeight*0.6;
-    love.graphics.print("TAP TO RESTART GAME",nStartBtnX,nStartBtnY);
+    
 end
 
-function WelcomScene:MouseDown(x, y, button, istouch, presses)
+function WelcomScene:ClickStartHandler()
     SceneMgr:SwitchScene(GameStateType.nGame,SceneType.sGameScene,true);
+end 
+
+function WelcomScene:ClickHelpHandler()
+    SceneMgr:SwitchScene(GameStateType.nHelp,SceneType.sHelpWelcom,true);
 end
-
-

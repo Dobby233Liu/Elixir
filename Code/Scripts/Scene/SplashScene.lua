@@ -5,27 +5,27 @@ function SplashScene:Start()
     self.speed = speed or 0.5;  
     local tbSplash = 
     {
-        -- {		
-        --     image = love.graphics.newImage("Assets/Textures/images/trees.png"),
-        --     -- footer = "Look, some trees!",
-        --     footer = "",
-        --     speed = self.speed,
-        --     duration = 2,
-        -- },
-        -- {		
-        --     image = love.graphics.newImage("Assets/Textures/images/rabbit.png"),
-        --     -- footer = "There is a rabbit nearby...",
-        --     footer = "",
-        --     speed = self.speed,
-        --     duration = 2,
-        -- },
-        -- {		
-        --     image = love.graphics.newImage("Assets/Textures/images/mushroom.png"),
-        --     -- footer = "Who likes eating mushrooms!",
-        --     footer = "",
-        --     speed = self.speed,
-        --     duration = 2,
-        -- },
+        {		
+            image = love.graphics.newImage("Assets/Textures/images/trees.png"),
+            -- footer = "Look, some trees!",
+            footer = "",
+            speed = self.speed,
+            duration = 2,
+        },
+        {		
+            image = love.graphics.newImage("Assets/Textures/images/rabbit.png"),
+            -- footer = "There is a rabbit nearby...",
+            footer = "",
+            speed = self.speed,
+            duration = 2,
+        },
+        {		
+            image = love.graphics.newImage("Assets/Textures/images/mushroom.png"),
+            -- footer = "Who likes eating mushrooms!",
+            footer = "",
+            speed = self.speed,
+            duration = 2,
+        },
         {		
             image = love.graphics.newImage("Assets/Textures/images/love-app-icon.png"),
             -- footer = "Who likes eating mushrooms!",

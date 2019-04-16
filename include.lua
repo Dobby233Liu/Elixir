@@ -13,7 +13,7 @@ function Include:Import(pfn)
     self:GlobalConfig();
     self:ThirdPartyLibrary();
     self:GlobalManager();
-    -- self:GlobalSystem();
+    self:GlobalSystem();
     self:GlobalScene();
     self:Trace(1," *** Do File Complete! *** ");
     pfn(0,nil);
@@ -22,9 +22,9 @@ end
 function Include:ThirdPartyLibrary()
     local strDir = "Library/";
     loader      	    = require(strDir..'love-loader');
-    bump_debug      	= require(strDir..'bump_debug'); 
-    bump      	        = require(strDir..'bump'); 
-    json      	        = require(strDir..'json'); 
+    bump_debug      	= require(strDir..'bump_debug');
+    bump      	        = require(strDir..'bump');
+    json      	        = require(strDir..'json');
     splash      	    = require(strDir..'lovesplash');
     Timer               = require(strDir.."Timer")();
     Camera              = require(strDir.."Camera")();
@@ -34,17 +34,22 @@ function Include:ThirdPartyLibrary()
     Tween               = require(strDir.."tween/tween");
     utf8                = require("utf8");
     socket              = require("socket");
-    http                = require("socket.http")
+    http                = require("socket.http");
+    loveframes          = require(strDir.."loveframes/loveframes");
 end
 
 function Include:GlobalBase()
-    local strDir = "Code/Scripts/Majors/Base/";
-    self:RequireHandler(strDir,"Scene");
     
     local strDir = "Code/Scripts/Majors/Ecs/";
     self:RequireHandler(strDir,"Compo");
     self:RequireHandler(strDir,"Entity");
     self:RequireHandler(strDir,"System");
+
+    local strDir = "Code/Scripts/Majors/Base/";
+    self:RequireHandler(strDir,"Scene");
+    self:RequireHandler(strDir,"Actor");
+    self:RequireHandler(strDir,"Stage");
+    
 
 end
 
@@ -64,6 +69,11 @@ function Include:GlobalConfig()
     self:RequireHandler(cfgDir,"GameStateCfg");
     self:RequireHandler(cfgDir,"SceneMgrCfg");
 
+    cfgDir = strDir.."SceneCfgs/";
+    -- self:RequireHandler(cfgDir,"WelcomSceneCfg");
+    -- self:RequireHandler(cfgDir,"HelpSceneCfg");
+    -- self:RequireHandler(cfgDir,"GameSceneCfg");
+
 end
 
 function Include:GlobalManager()
@@ -74,10 +84,14 @@ function Include:GlobalManager()
     self:RequireHandler(strDir,"GameStateMgr");
     self:RequireHandler(strDir,"SceneMgr");
     self:RequireHandler(strDir,"CameraMgr");
+    self:RequireHandler(strDir,"ActorMgr");
 end 
 
 function Include:GlobalSystem()
     local strDir = "Code/Scripts/System/";
+    self:RequireHandler(strDir,"LayerSortSystem");
+    self:RequireHandler(strDir,"RectangleRenderSystem");
+
 end
 
 function Include:GlobalScene()
@@ -86,4 +100,5 @@ function Include:GlobalScene()
     self:RequireHandler(strDir,"SplashScene");
     self:RequireHandler(strDir,"WelcomScene");
     self:RequireHandler(strDir,"GameScene");
+    self:RequireHandler(strDir,"HelpWelcom");
 end

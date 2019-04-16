@@ -77,3 +77,23 @@ function love.mousepressed(x, y, button, istouch, presses)
         GameMgr:MouseDown(x, y, button, istouch, presses)
     end
 end
+
+function love.mousereleased(x, y, button)
+	GameMgr:mousereleased(x, y, button)
+end
+
+function love.wheelmoved(x, y)
+	GameMgr:wheelmoved(x, y)
+end
+
+function love.keypressed(key, isrepeat)
+	GameMgr:keypressed(key, isrepeat)
+end
+
+function love.keyreleased(key)
+	GameMgr:keyreleased(key)
+end
+
+function love.textinput(text)
+	GameMgr:textinput(text)
+end

@@ -6,6 +6,7 @@ _G.GameStateType =
     nWelcome = 3;
     nGame = 4;
     nOver = 5;
+    nHelp = 6;
 }
 
 _G.GameStateValue = 
@@ -15,4 +16,18 @@ _G.GameStateValue =
     [3] = "WELCOME";
     [4] = "GAME";
     [5] = "OVER";
+    [6] = "HELP";
+}
+
+_G.GameType = 
+{
+    Roguelike = "ROGUELIKE";
+}
+
+_G.RenderLayerType = { -- 渲染层级类型
+    nFloor = 1;
+    nPlayer = 2;
+    nWeapon = 3;
+    nSky = 4;
+    nUI = 5;
 }

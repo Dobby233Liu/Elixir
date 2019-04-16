@@ -26,5 +26,6 @@
         "sTitle":"Elixir",
         "sEngineVersion":"11.1",
         "sGameVersion":"0.0.1"
-    }
+    },
+    "sGameType":"ROGUELIKE"
 }

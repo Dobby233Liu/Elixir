@@ -34,7 +34,9 @@ end
 
 function SceneMgr:Render()
 	if self.iCurScene then 
-		self.iCurScene:Render();
+		CameraMgr:RenderAttach(function ()
+			self.iCurScene:Render();
+		end)
 	end
 end 
 
@@ -59,22 +61,34 @@ function SceneMgr:GetCurScene()
 	return self.iCurScene;
 end
 
+function SceneMgr:GetCurScene()
+	return self.iCurScene;
+end
+
 function SceneMgr:SetCurScene(sClassName)
 	self.iCurScene = self:GetScene(sClassName);
 end
 
-function SceneMgr:SwitchScene(nState,sScene,bFade)
-	self:Trace(1,nState,sScene) 
+function SceneMgr:SwitchScene(nState,sScene,bFade,pfn)
+	self:Trace(1,nState,sScene,bFade) 
 	if bFade then 
-		CameraMgr:Fade(0.5, 0, 0, 0, 1,function()
+		CameraMgr:Fade(1.5, 0, 0, 0, 1,function()
+			self:GetCurScene():Destory();
 			GameStateMgr:SetCurState(nState);
 			self:SetCurScene(sScene); 
 			self:GetCurScene():Start();
-			CameraMgr:Fade(3.5, 0, 0, 0, 0);
+			if pfn then 
+				pfn()
+			end
+			CameraMgr:Fade(2.5, 0, 0, 0, 0);
 		end)
 	else 
+		self:GetCurScene():Destory();
 		GameStateMgr:SetCurState(nState);
 		self:SetCurScene(sScene);
 		self:GetCurScene():Start();
+		if pfn then 
+			pfn()
+		end
 	end
 end

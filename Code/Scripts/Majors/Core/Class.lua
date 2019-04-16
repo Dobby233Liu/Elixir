@@ -39,11 +39,11 @@ function Class:Trace(nType,...)
 
 	print(str.."");
 
-	local file = io.open('gc.log', 'a')
-	if file ~= nil then 
-		file:write(str.."\n");
-		file:close();
-	end
+	-- local file = io.open('gc.log', 'a')
+	-- if file ~= nil then 
+	-- 	file:write(str.."\n");
+	-- 	file:close();
+	-- end
 end
 
 function Class:Error(...)

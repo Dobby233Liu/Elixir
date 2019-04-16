@@ -25,6 +25,7 @@ function ProjectMgr:Start(pfn)
     Option.sTitle = Option.cfgProject.gameinfo.sTitle;
     Option.sEngineVersion = Option.cfgProject.gameinfo.sEngineVersion;
     Option.sGameVersion = Option.cfgProject.gameinfo.sGameVersion;
+    Option.sGameType = Option.cfgProject.gameinfo.sGameType;
 
     local sOSString = love.system.getOS( )
 
