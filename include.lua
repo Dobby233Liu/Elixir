@@ -33,6 +33,7 @@ function Include:ThirdPartyLibrary()
     Katsudo             = require(strDir.."katsudo");
     Tween               = require(strDir.."tween/tween");
     utf8                = require("utf8");
+    utf8_simple         = require(strDir.."utf8_simple");
     socket              = require("socket");
     http                = require("socket.http");
     loveframes          = require(strDir.."loveframes/loveframes");

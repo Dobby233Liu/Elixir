@@ -6,7 +6,7 @@ function WelcomScene:StartHandler()
     self:SetCurStage(iStage);
 
     local startBtn = loveframes.Create("button");
-    startBtn:SetText("Start");
+    startBtn:SetText("开始");
     startBtn:SetPos(445,384);
     startBtn:SetSize(70,40);
     startBtn.OnClick = function ()
@@ -32,7 +32,6 @@ function WelcomScene:RenderHandler()
     local nTitleX = (graphicsWidth*0.5) - AssetsMgr:GetFont(722):getWidth(Option.sTitle)*0.5;
     local nTitleY = graphicsHeight*0.35;
     love.graphics.print(Option.sTitle, nTitleX,nTitleY);
-    
 end
 
 function WelcomScene:ClickStartHandler()

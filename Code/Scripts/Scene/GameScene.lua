@@ -5,6 +5,4 @@ function GameScene:StartHandler()
     local iStage = self:CreateStage();
     self:SetCurStage(iStage);
 
-    
-
 end

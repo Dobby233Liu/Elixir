@@ -5,7 +5,8 @@ function LoaderScene:Start(callback)
     local pfn = function ()
         self:Trace(1,"[End loading]");
         -- SceneMgr:SwitchScene(GameStateType.nSplash,SceneType.sSplashScene);
-        SceneMgr:SwitchScene(GameStateType.nWelcome,SceneType.sWelcomScene,true);
+        -- SceneMgr:SwitchScene(GameStateType.nWelcome,SceneType.sWelcomScene,true);
+        SceneMgr:SwitchScene(GameStateType.nGame,SceneType.sGameScene,true);
         if callback then 
             callback();
         end
