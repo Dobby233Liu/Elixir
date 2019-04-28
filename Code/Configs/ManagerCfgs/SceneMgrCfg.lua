@@ -5,6 +5,7 @@ _G.SceneType =
     sWelcomScene = "WelcomScene";
     sGameScene = "GameScene";
     sHelpWelcom = "HelpWelcom";
+    sGMTool = "GMTool";
 }
 
 _G.SceneMgrCfg = 
@@ -16,6 +17,7 @@ _G.SceneMgrCfg =
         "WelcomScene";
         "GameScene";
         "HelpWelcom";
+        "GMTool";
     }
 }
 

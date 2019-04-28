@@ -1,8 +1,10 @@
 local PlayerConfig = 
 {
-    ['Transform'] = { x=0, y=0, w=64, h=64 };
+    ['Transform'] = { sx = 1, sy = 1 };
     ["Color"] = { r = 1, g = 1, b = 1,a = 1 };
-    ['Rectangle'] = { sFillType = 'fill'};
     ['RenderLayer'] = { nLayerIndex = RenderLayerType.nPlayer };
+    -- ['Rectangle'] = { sFillType = 'line'};
+    ["Animate"] = { sImg = "hero_ani_2", nQuadW = 100, nQuadH = 100, nTotalFrame= 4, nLoop = 1, nTotalPlayCount = 10,nTimeAfterPlay = 0.1 };
+    -- ["Sprite"] = { sImg = "hero_1"};
 }
 return PlayerConfig

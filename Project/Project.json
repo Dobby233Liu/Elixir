@@ -24,8 +24,11 @@
     "official":"http://www.ringgamestudio.com",
     "gameinfo":{
         "sTitle":"Elixir",
+        "bFollow":true,
         "sEngineVersion":"11.1",
-        "sGameVersion":"0.0.1"
+        "sGameVersion":"0.0.2",
+        "Debug":false,
+        "Log":false
     },
     "sGameType":"ROGUELIKE"
 }

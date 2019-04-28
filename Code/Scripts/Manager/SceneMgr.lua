@@ -48,6 +48,14 @@ function SceneMgr:MouseDown(x, y, button, istouch, presses)
 	end
 end
 
+function SceneMgr:KeyDown(key, isrepeat)
+	if self.iCurScene then 
+		if self.iCurScene.KeyDown then 
+			self.iCurScene:KeyDown(key, isrepeat)
+		end
+	end
+end
+
 function SceneMgr:CreateScene(sClassName)
 	local iScene = _G[sClassName];
 	return iScene;

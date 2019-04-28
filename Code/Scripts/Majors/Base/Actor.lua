@@ -9,6 +9,7 @@ function Actor:DeriveClass(sClassName)
     obj.sTagType = "Actor";     -- 标签类型
     obj.sUseName = "Actor";     -- 标签类型
     obj.bVisible = true;        -- 是否可用
+    obj.iParent = nil;          -- 父级容器
 	setmetatable(obj,{__index = self});
 	return obj;
 end 
@@ -51,4 +52,31 @@ function Actor:ChangeiCompoParam(tbProperty)
             end  
         end
     end
+end
+
+function Actor:SetParent(iActor)
+    self.iParent = iActor;
+end
+
+function Actor:GetParent()
+    return self.iParent;
+end
+
+function Actor:IsParent()
+    if self.iParent == nil then 
+        return false;
+    end 
+    return true;
+end
+
+function Actor:UpdatePosByParent(fx,fy)
+    if not self:IsParent() then 
+        return 
+    end
+    local iParent = self:GetParent();
+    local iCompoTransform = iParent:GetiCompo("Transform");
+    local x = iCompoTransform.x;
+    local y = iCompoTransform.y;
+    self:GetiCompo("Transform").x = x + fx;
+    self:GetiCompo("Transform").y = y + fy;
 end

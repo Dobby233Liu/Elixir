@@ -12,3 +12,20 @@ function ActorMgr:CreateActor(sActorType,sUseName,tbProperty)
     iActor:ChangeiCompoParam(tbProperty);
     return iActor
 end
+
+function ActorMgr:UpdateActor(iActor,tbProperty)
+    iActor:ChangeiCompoParam(tbProperty);
+end
+
+function ActorMgr:GetActor(sUseName)
+    local iScene = SceneMgr:GetCurScene();
+    local iStage = iScene:GetCurStage();
+    local iActor = iStage:GetActor(sUseName)
+    return iActor;
+end
+
+function ActorMgr:RemoveActor(sClassName)
+    local iScene = SceneMgr:GetCurScene();
+    local iStage = iScene:GetCurStage();
+    iStage:RemoveActor(sClassName);
+end

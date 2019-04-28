@@ -7,6 +7,7 @@ _G.GameStateType =
     nGame = 4;
     nOver = 5;
     nHelp = 6;
+    nGMTool = 7;
 }
 
 _G.GameStateValue = 
@@ -17,6 +18,7 @@ _G.GameStateValue =
     [4] = "GAME";
     [5] = "OVER";
     [6] = "HELP";
+    [7] = "GMTOOL";
 }
 
 _G.GameType = 

@@ -9,14 +9,16 @@ function GameMgr:Start()
 end
 
 function GameMgr:Update(dt)
+	Timer:update(dt); 
+	Tween.update(dt);
     CameraMgr:Update(dt); 
     SceneMgr:Update(dt);
-    loveframes.update(dt);
+	loveframes.update(dt);
 end
 
 function GameMgr:Render()
-    loveframes.draw()
     SceneMgr:Render()
+    loveframes.draw()
 end
 
 function GameMgr:MouseDown(x, y, button, istouch, presses)
@@ -35,16 +37,16 @@ end
 
 function GameMgr:keypressed(key, isrepeat)
 	loveframes.keypressed(key, isrepeat)
-	
 	if key == "f1" then
 		local debug = loveframes.config["DEBUG"]
 		loveframes.config["DEBUG"] = not debug
 	elseif key == "f2" then
 		loveframes.RemoveAll()
-		demo.CreateToolbar()
-		demo.CreateExamplesList()
-		--demo.ToggleExamplesList()
+	elseif key == "tab" then
+		local debug = Option.Debug;
+		Option.Debug = not debug;
 	end
+	SceneMgr:KeyDown(key, isrepeat)
 end
 
 function GameMgr:keyreleased(key)

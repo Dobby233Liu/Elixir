@@ -7,6 +7,7 @@ function LoaderScene:Start(callback)
         -- SceneMgr:SwitchScene(GameStateType.nSplash,SceneType.sSplashScene);
         -- SceneMgr:SwitchScene(GameStateType.nWelcome,SceneType.sWelcomScene,true);
         SceneMgr:SwitchScene(GameStateType.nGame,SceneType.sGameScene,true);
+        -- SceneMgr:SwitchScene(GameStateType.nGMTool,SceneType.sGMTool,true);
         if callback then 
             callback();
         end

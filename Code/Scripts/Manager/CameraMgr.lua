@@ -1,5 +1,9 @@
 _G.CameraMgr = Class:DeriveClass("CameraMgr");  
 
+function CameraMgr:SetFollowActor(iFollowPlayer)
+    self.iFollowPlayer = iFollowPlayer
+end
+
 function CameraMgr:SetFollowStyle(sFollowStyle)
     Camera:setFollowStyle(sFollowStyle);
 end
@@ -9,12 +13,12 @@ function CameraMgr:Update(dt)
         return;
     end 
     -- 移动镜头 鼠标方式
-    if Option.bCamera_MouseMove then 
+    -- if Option.bCamera_MouseMove then 
         if Option.bMouse_Move then 
             local mx,my = CameraMgr:GetMousePosition();
             Camera:follow(mx, my); 
         end
-    end
+    -- end
     -- 移动镜头 键盘方式
     if Option.bCamera_KeyMove then 
         local keyi = love.keyboard.isDown("lshift");
@@ -23,7 +27,7 @@ function CameraMgr:Update(dt)
             Camera:follow(mx, my); 
         end
     end
-    if Option.bCamera_MouseScale then 
+    -- if Option.bCamera_MouseScale then 
         -- 缩小镜头 
         local keyi = love.keyboard.isDown("]");
         if keyi then 
@@ -36,21 +40,26 @@ function CameraMgr:Update(dt)
             if Camera.scale >= 10 then return end;
             Camera.scale = Camera.scale + 0.01;
         end  
-    end
+    -- end
     -- 还原镜头
     local keyu = love.keyboard.isDown("o");
     if keyu then  
         Camera.scale = 1;
     end 
     Camera:update(dt);
+    if self.iFollowPlayer then 
+        CameraMgr:Follow();
+    end
 end 
 
-function CameraMgr:Follow(iActor)  
-    if not Option.bCamera_FollowPlayer then  return end;
-    local nActorX = iActor:GetiCompo("Transform").x;
-    local nActorY = iActor:GetiCompo("Transform").y;
-    local nActorW = iActor:GetiCompo("Transform").w;
-    local nActorH = iActor:GetiCompo("Transform").h;
+function CameraMgr:Follow()
+    if not Option.bFollow then 
+        return
+    end
+    local nActorX = self.iFollowPlayer:GetiCompo("Transform").x;
+    local nActorY = self.iFollowPlayer:GetiCompo("Transform").y;
+    local nActorW = self.iFollowPlayer:GetiCompo("Transform").w;
+    local nActorH = self.iFollowPlayer:GetiCompo("Transform").h;
     local tx,ty = nActorX + nActorW * 0.5, nActorY + nActorH * 0.5;
     Camera:follow(tx,ty);
 end 

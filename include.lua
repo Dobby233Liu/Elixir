@@ -50,6 +50,7 @@ function Include:GlobalBase()
     self:RequireHandler(strDir,"Scene");
     self:RequireHandler(strDir,"Actor");
     self:RequireHandler(strDir,"Stage");
+    self:RequireHandler(strDir,"Chain");
     
 
 end
@@ -92,6 +93,15 @@ function Include:GlobalSystem()
     local strDir = "Code/Scripts/System/";
     self:RequireHandler(strDir,"LayerSortSystem");
     self:RequireHandler(strDir,"RectangleRenderSystem");
+    self:RequireHandler(strDir,"GameChainSystem");
+    self:RequireHandler(strDir,"MakeChildSystem");
+    self:RequireHandler(strDir,"MapGeneratorSystem");
+    self:RequireHandler(strDir,"SpriteRenderSystem");
+    self:RequireHandler(strDir,"AnimationSystem");
+    -- 寻路三剑客
+    self:RequireHandler(strDir,"PlayerSystem");
+    self:RequireHandler(strDir,"PlayerTweenMoveSystem");
+    self:RequireHandler(strDir,"FindPathSystem");
 
 end
 
@@ -102,4 +112,5 @@ function Include:GlobalScene()
     self:RequireHandler(strDir,"WelcomScene");
     self:RequireHandler(strDir,"GameScene");
     self:RequireHandler(strDir,"HelpWelcom");
+    self:RequireHandler(strDir,"GMTool");
 end

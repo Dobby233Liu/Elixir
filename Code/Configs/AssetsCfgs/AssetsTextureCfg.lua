@@ -35,5 +35,8 @@ _G.AssetsTextureCfg = -- 贴图
         {sName = "008",   sPath = "Assets/Textures/008.png"  },
         {sName = "009",   sPath = "Assets/Textures/009.png"  },
         {sName = "012",   sPath = "Assets/Textures/012.png"  },
+        
+        {sName = "hero_1",   sPath = "Assets/Textures/hero_1.png"  },
+        {sName = "tile_1",   sPath = "Assets/Textures/tile_1.png"  },
     }, 
 }
