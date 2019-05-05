@@ -3,7 +3,7 @@ _G.Actor = Entity:DeriveClass("Actor");
 function Actor:DeriveClass(sClassName)
     local obj = {}; 
     obj.sClassName = sClassName;
-    obj.tbListenerList = {};    -- 侦听列表 
+    obj.tbListenerList = {};    -- 侦听列表
     obj.tbiCompoList = {};      -- 组件列表
     obj.nUniqueID = 0;          -- 唯一识别
     obj.sTagType = "Actor";     -- 标签类型

@@ -54,3 +54,48 @@ function MapGeneratorSystem:GetSameItem(tbDataMapInfo,tbNode)
     end
     return false;
 end
+
+function MapGeneratorSystem:GetPlayerBornPoint(nIndex)
+    local iMap = ActorMgr:GetActor("map1")
+    local iMapCompo = iMap:GetiCompo("MapMaker");
+    local tbRealMapInfo = iMapCompo.tbRealMapInfo;
+    local nIndex = nIndex or math.random(1,4);
+    local tmp_item = { x = 0, y = 0 };
+    for i = 1,#tbRealMapInfo do 
+        local item = tbRealMapInfo[i];
+        if item.nWalkAble == 1 then 
+            if nIndex == 1 then 
+                if item.x >= tmp_item.x then 
+                    tmp_item = item;
+                end
+            elseif nIndex == 2 then  
+                if item.x < tmp_item.x then 
+                    tmp_item = item;
+                end
+            elseif nIndex == 3 then  
+                if item.y < tmp_item.y then 
+                    tmp_item = item;
+                end
+            elseif nIndex == 4 then  
+                if item.y >= tmp_item.y then 
+                    tmp_item = item;
+                end
+            end
+        end
+    end
+    self:Trace(1,tmp_item.nWalkAble)
+    return tmp_item,nIndex;
+end
+
+function MapGeneratorSystem:GetRandomBornPoint(nPointCount)
+    local iMap = ActorMgr:GetActor("map1")
+    local iMapCompo = iMap:GetiCompo("MapMaker");
+    local tbRealMapInfo = iMapCompo.tbRealMapInfo;
+    local tbIndex = {}
+    for i = 1, #tbRealMapInfo do 
+        local iNode = tbRealMapInfo[i];
+        table.insert(tbIndex,{ x = iNode.x, y = iNode.y});
+    end
+    local tbList = random_table(tbIndex, nPointCount)
+    return tbList;
+end

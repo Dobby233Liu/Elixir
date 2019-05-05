@@ -70,8 +70,6 @@ function Scene:DestoryHandler()
     self:Trace(3,"Scene:DestoryHandler you must Implementation !!!")
 end
 
-
-
 function Scene:CreateStage(nStageID)
     self.nStageID = nStageID or self.nStageID;
     local iStage = Stage:DeriveClass("Stage"..self.nStageID);
@@ -114,7 +112,7 @@ function Scene:SwitchStage(nStageID,bCreate,bFade,pfn)
         CameraMgr:Fade(1.5, 0, 0, 0, 1,function()
             if iStage == nil then 
                 if bCreate then 
-                    self:Destory()
+                    self:Destory();
                     iStage = self:CreateStage(nStageID);
                     iStage = self:SetCurStage(iStage);
                     iStage:Start();
@@ -129,7 +127,7 @@ function Scene:SwitchStage(nStageID,bCreate,bFade,pfn)
     else 
         if iStage == nil then 
             if bCreate then 
-                self:Destory()
+                self:Destory();
                 iStage = self:CreateStage(nStageID);
                 iStage = self:SetCurStage(iStage);
                 iStage:Start();

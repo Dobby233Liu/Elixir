@@ -7,7 +7,7 @@ function ProjectMgr:Start(pfn)
     love.graphics.setDefaultFilter('nearest', 'nearest', 1);
     love.graphics.setLineStyle('smooth');
     -- love.graphics.setBackgroundColor(0.21,0.27,0.30);
-    love.graphics.setBackgroundColor(69/255,69/255,69/255);
+    love.graphics.setBackgroundColor(38/255,38/255,38/255);
     
     -- 获取分辨率
     _G.graphicsWidth  = love.graphics.getWidth();

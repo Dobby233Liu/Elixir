@@ -98,62 +98,62 @@ function AnimationSystem:Update(dt)
 	end 
 end
 
-function AnimationSystem:Render()
-	local iStage = self:GetCurScene():GetCurStage();
-	for _,tbLayer in pairs(iStage:GetRenderList()) do
-	   for _,iActor in ipairs(tbLayer) do 
-			repeat
-				if not self:GetRegisterCompo(iActor) then break end
-				if not iActor.bVisible then break end
-				local iCompoAnimate = iActor:GetiCompo("Animate");
-				local iCompoTransform = iActor:GetiCompo("Transform");
-				local iCompoColor = iActor:GetiCompo("Color");
-				if not iCompoAnimate.bRunning then 
-					break;
-				end 
-				local x = iCompoTransform.x;
-				local y = iCompoTransform.y;
-				local iImage = iCompoAnimate.iImage;
-				if iImage == nil then 
-					self:Trace(1,"there is no image")
-					break;
-				end 
-				local iCurQuad = iCompoAnimate.iCurQuad;
-				if iCurQuad == nil then 
-					self:Trace(1,"there is no quad")
-					break;
-				end 
-				local nQuadW = iCompoAnimate.nQuadW;
-				local nQuadH = iCompoAnimate.nQuadH;
-				local w = iCompoTransform.w;
-				local h = iCompoTransform.h;
-				local r = iCompoTransform.r;
-				local ox = iCompoTransform.ox;
-				local oy = iCompoTransform.oy;
-				local sx = iCompoTransform.sx;
-				local sy = iCompoTransform.sy;
-				local dx = iCompoTransform.dx;
-				local dy = iCompoTransform.dy;
-				local nImageX = x - (nQuadW * 0.5 - w * 0.5);
-				local nImageY = y - (nQuadH - h);
-				love.graphics.setColor(iCompoColor.r,iCompoColor.g,iCompoColor.b,iCompoColor.a); 
-				love.graphics.draw(iImage, iCurQuad, nImageX, nImageY,r,sx * dx,sy * dy,ox,oy, kx,ky )
-				if Option.Debug then 
-					-- 贴图轮廓
-					love.graphics.setColor(100,100,250,100);
-					love.graphics.rectangle("line", nImageX, nImageY, nQuadW, nQuadH);
-					-- 底部点
-					love.graphics.setColor(250,0,0,250); 
-					love.graphics.circle( "fill",nImageX + nQuadW / 2, nImageY + nQuadH, 7 ) 
-					-- 帧序号
-					love.graphics.setColor(255,0,0,250); 
-					local nCurFrame = iCompoAnimate.nCurFrame;
-					love.graphics.print(string.format("Frame:%d",nCurFrame or 0),nImageX + nQuadW / 2, nImageY + nQuadH + 10);
-				end
-			until true
-		end
-	end 
-end
+-- function AnimationSystem:Render()
+-- 	local iStage = self:GetCurScene():GetCurStage();
+-- 	for _,tbLayer in pairs(iStage:GetRenderList()) do
+-- 	   for _,iActor in ipairs(tbLayer) do 
+-- 			repeat
+-- 				if not self:GetRegisterCompo(iActor) then break end
+-- 				if not iActor.bVisible then break end
+-- 				local iCompoAnimate = iActor:GetiCompo("Animate");
+-- 				local iCompoTransform = iActor:GetiCompo("Transform");
+-- 				local iCompoColor = iActor:GetiCompo("Color");
+-- 				if not iCompoAnimate.bRunning then 
+-- 					break;
+-- 				end 
+-- 				local x = iCompoTransform.x;
+-- 				local y = iCompoTransform.y;
+-- 				local iImage = iCompoAnimate.iImage;
+-- 				if iImage == nil then 
+-- 					self:Trace(1,"there is no image")
+-- 					break;
+-- 				end 
+-- 				local iCurQuad = iCompoAnimate.iCurQuad;
+-- 				if iCurQuad == nil then 
+-- 					self:Trace(1,"there is no quad")
+-- 					break;
+-- 				end 
+-- 				local nQuadW = iCompoAnimate.nQuadW;
+-- 				local nQuadH = iCompoAnimate.nQuadH;
+-- 				local w = iCompoTransform.w;
+-- 				local h = iCompoTransform.h;
+-- 				local r = iCompoTransform.r;
+-- 				local ox = iCompoTransform.ox;
+-- 				local oy = iCompoTransform.oy;
+-- 				local sx = iCompoTransform.sx;
+-- 				local sy = iCompoTransform.sy;
+-- 				local dx = iCompoTransform.dx;
+-- 				local dy = iCompoTransform.dy;
+-- 				local nImageX = x - (nQuadW * 0.5 - w * 0.5);
+-- 				local nImageY = y - (nQuadH - h);
+-- 				love.graphics.setColor(iCompoColor.r,iCompoColor.g,iCompoColor.b,iCompoColor.a); 
+-- 				love.graphics.draw(iImage, iCurQuad, nImageX, nImageY,r,sx * dx,sy * dy,ox,oy, kx,ky )
+-- 				if Option.Debug then 
+-- 					-- 贴图轮廓
+-- 					love.graphics.setColor(100,100,250,100);
+-- 					love.graphics.rectangle("line", nImageX, nImageY, nQuadW, nQuadH);
+-- 					-- 底部点
+-- 					love.graphics.setColor(250,0,0,250); 
+-- 					love.graphics.circle( "fill",nImageX + nQuadW / 2, nImageY + nQuadH, 7 ) 
+-- 					-- 帧序号
+-- 					love.graphics.setColor(255,0,0,250); 
+-- 					local nCurFrame = iCompoAnimate.nCurFrame;
+-- 					love.graphics.print(string.format("Frame:%d",nCurFrame or 0),nImageX + nQuadW / 2, nImageY + nQuadH + 10);
+-- 				end
+-- 			until true
+-- 		end
+-- 	end 
+-- end
 
 function AnimationSystem:Play(iActor,pfn)
 	if not iActor then 

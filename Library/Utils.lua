@@ -638,3 +638,18 @@ function ColorTransformForLove11(r,g,b)
     print(str)
     return str
 end
+
+-- 随机不重复
+function random_table(t, num)
+    for i,v in pairs(t) do
+        local r = math.random(#t)
+        local temp = t[i]
+        t[i] = t[r]
+        t[r] = temp
+    end
+    num = num or #t
+    for i = #t,num+1, -1 do
+        t[i] = nil
+    end
+    return t
+end

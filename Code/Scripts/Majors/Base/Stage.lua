@@ -128,3 +128,14 @@ end
 function Stage:RemoveAllTween()
     Tween:stopAll();
 end
+
+function Stage:GetTagTypeActorList(sTagType)
+    local tbResult = {};
+    local tbActorList = self:GetActorList();
+    for i,v in ipairs(tbActorList) do 
+        if v.sTagType == sTagType then 
+            table.insert(tbResult,v);
+        end
+    end
+    return tbResult
+end

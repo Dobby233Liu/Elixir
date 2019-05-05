@@ -91,16 +91,17 @@ end
 
 function Include:GlobalSystem()
     local strDir = "Code/Scripts/System/";
-    self:RequireHandler(strDir,"LayerSortSystem");
-    self:RequireHandler(strDir,"RectangleRenderSystem");
     self:RequireHandler(strDir,"GameChainSystem");
     self:RequireHandler(strDir,"MakeChildSystem");
     self:RequireHandler(strDir,"MapGeneratorSystem");
-    self:RequireHandler(strDir,"SpriteRenderSystem");
     self:RequireHandler(strDir,"AnimationSystem");
+    self:RequireHandler(strDir,"RenderSystem");
+    self:RequireHandler(strDir,"EnemySystem");
+    self:RequireHandler(strDir,"GlobalGameSystem");
+    self:RequireHandler(strDir,"ExitTileSystem");
     -- 寻路三剑客
     self:RequireHandler(strDir,"PlayerSystem");
-    self:RequireHandler(strDir,"PlayerTweenMoveSystem");
+    self:RequireHandler(strDir,"TweenMoveSystem");
     self:RequireHandler(strDir,"FindPathSystem");
 
 end

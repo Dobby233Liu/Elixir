@@ -4,10 +4,22 @@ PlayerSystem:SetRegisterCompo{
 
 };
 
+PlayerSystem.nSpeed = 0.4; 
+
 function PlayerSystem:MouseDown(x,y,button)
     if button == 1 then 
+        local bOper = self:OperHandler();
+        if bOper then 
+            return
+        end 
         self:MapMoveHandler();
     end 
+end
+
+function PlayerSystem:OperHandler()
+     
+
+    return false;
 end
 
 function PlayerSystem:MapMoveHandler()
@@ -51,6 +63,7 @@ function PlayerSystem:MapMoveHandler()
     end
     local tbStartPoint = GetNodeFromRealMap(nPCol,nPRow,tbRealMapInfo);
     local tbEndPoint = GetNodeFromRealMap(nMCol,nMRow,tbRealMapInfo);
+    
     if tbStartPoint == nil or tbEndPoint == nil then 
         self:Trace(2," Not Find Start or End Point ");
         self.bMoved = false;
@@ -62,9 +75,51 @@ function PlayerSystem:MapMoveHandler()
             self.bMoved = false;
             return;
         end
-        PlayerTweenMoveSystem:SearchPathComplete(tbPath,function ()
-            self.bMoved = false;
-            self:Trace(2," Player Move Done! ");
-        end);
+        TweenMoveSystem:SearchPathComplete(iPlayer,tbPath,function ()
+            tbEndPoint.nWalkAble = 0;
+            self.tbEndPoint = tbEndPoint;
+            self:AddActiveActorHandler(function ()
+                GlobalGameSystem:ChangeState("Enemy");
+                self:Trace(2," Player Move Done! ");
+            end);
+        end,self.nSpeed,"linear");
     end)
+end
+
+function PlayerSystem:EvtChangeState(sState)
+    if sState == "Player" then 
+        self.bMoved = false;
+        self.tbEndPoint.nWalkAble = 1;
+    end
+end
+
+function PlayerSystem:AddActiveActorHandler(pfn)
+    local iStage = self:GetCurScene():GetCurStage();
+    local iPlayer = ActorMgr:GetActor("player1");
+    local px = iPlayer:GetiCompo("Transform").x;
+    local py = iPlayer:GetiCompo("Transform").y;
+    local nDistance = iPlayer:GetiCompo("Attribute").nDistance;
+    local tbActorList = iStage:GetActorList();
+    for i,v in ipairs(tbActorList) do 
+        if v.sTagType == "Enemy" then 
+            local bx = v:GetiCompo("Transform").x;
+            local by = v:GetiCompo("Transform").y;
+            local dist = Dist(px + 50,py + 50,bx + 50,by + 50);
+            if dist <= nDistance then 
+                v:SetiCompo("Attribute", "bActive", true);
+            else 
+                v:SetiCompo("Attribute", "bActive", false);
+            end
+        elseif v.sTagType == "ExitTile" then 
+            local bx = v:GetiCompo("Transform").x;
+            local by = v:GetiCompo("Transform").y;
+            local dist = Dist(px,py,bx,by);
+            if dist <= 1 then 
+                ExitTileSystem:NextStageHandler(); 
+            end
+        end
+    end
+    if pfn then 
+        pfn();
+    end
 end
